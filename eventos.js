@@ -1,3 +1,5 @@
 function atualizarlista(){
-    fetch()
+    fetch ('http://localhost:8001/compras')
+    .then()
+    .then();
 }
