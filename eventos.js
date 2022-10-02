@@ -50,10 +50,10 @@ const API_URL = 'http://localhost:666'
         }
         fetch(API_URL+'/telefones',{
             method:'POST',
-            body:JSON.stringify(contato)
             headers: {
                 'content-type': 'application/json',
             },
+            body:JSON.stringify(contato)
         })
             .then((resposta)=>resposta.json())
             .then((data)=> {
