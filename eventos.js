@@ -66,3 +66,13 @@ const API_URL = 'http://localhost:666'
             });
             formAdd.reset()
     }
+
+    function chamarcontato(id) {
+        fetch(API_URL+'/telefones/'+id)
+        .then((resposta)=>{
+            return resposta.json();
+        })
+        .then((contato)=>{
+            
+        })
+    }
