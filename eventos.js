@@ -1,7 +1,7 @@
 const API_URL = 'http://localhost:666'
     function atualizarLista() {      
         tabela_lista.innerHTML ='',
-        fetch(API_URL+'telefones')
+        fetch(API_URL+'lista')
         .then((resposta)=>{
             return resposta.json();
         })
@@ -31,7 +31,7 @@ const API_URL = 'http://localhost:666'
             return;
         }
     
-        fetch(API_URL+'/telefones/'+id,{
+        fetch(API_URL+'/lista/'+id,{
             method: 'DELETE',
         });
         atualizarLista();
@@ -48,7 +48,7 @@ const API_URL = 'http://localhost:666'
             alert('Dados invalidos');
             return;
         }
-        fetch(API_URL+'/telefones',{
+        fetch(API_URL+'/lista',{
             method:'POST',
             headers: {
                 'content-type': 'application/json',
@@ -68,11 +68,11 @@ const API_URL = 'http://localhost:666'
     }
 
     function chamarcontato(id) {
-        fetch(API_URL+'/telefones/'+id)
+        fetch(API_URL+'/lista/'+id)
         .then((resposta)=>{
             return resposta.json();
         })
         .then((contato)=>{
-            
+
         })
     }
