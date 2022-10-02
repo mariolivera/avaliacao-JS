@@ -73,6 +73,37 @@ const API_URL = 'http://localhost:666'
             return resposta.json();
         })
         .then((contato)=>{
-
+            editar_id.value = contato.id;
+            editar_nome.value = contato.nome;
+            editar_telefone.value = contato.numero;
+            editar_cidade.value = contato.cidade;
         })
+    };
+    async function editar(){
+        event.preventDefault();
+        let id = editar_id.value
+        let contato = {
+            nome: editar_nome.Value,
+            numero: editar_telefone.Value,
+            cidade: editar_cidade.value,
+        }
+        await fetch(API_URL + '/lista/' +id,{
+            method: 'PATCH',
+            headers: {
+                'content-tye': 'application/json',
+            },
+            body: JSON.stringify(contato)
+        })
+        .then((resposta)=> resposta.json())
+        .then((data)=>{
+            alert('contato atualizado')
+            console.log('success',data);
+        })
+        .catch((erro)=>{
+            console.error('error:',erro);
+        });
+        atualizarLista();
+        let x = document.getElementById('fecharoffcanvas');
+        x = dispatchEvent(new Event('click'));
     }
+atualizarLista();
