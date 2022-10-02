@@ -19,7 +19,7 @@ const API_URL = 'http://localhost:666'
                 numero : input_editar_numero.value,
                 cidade : input_editar_cidade.value,
             };
-            await fetch(API_URL +'telefones/' + input_editar_id.value,{
+            await fetch(API_URL+'/telefones/'+input_editar_id.value,{
                 method: 'PATCH',
                 body: JSON.stringify(dados),
                 headers: {
@@ -35,7 +35,7 @@ const API_URL = 'http://localhost:666'
 
     function inserir(){
         event.preventDefault();
-        let dados = {
+        let dados ={
             nome: input_nome.value,
             numero: parseInt(input_numero.value),
             cidade: input_cidade.value,
