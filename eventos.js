@@ -1,109 +1,93 @@
 const API_URL = 'http://localhost:666'
-    function atualizarLista() {      
-        tabela_lista.innerHTML ='',
-        fetch(API_URL+'lista')
-        .then((resposta)=>{
-            return resposta.json();
-        })
-        .then((lista)=>{
-            lista.forEach((cadacontato)=> {
-                tabela_lista.innerHTML +=`
-                    <tr>
-                        <td>${cadacontato.id}</td>
-                        <td>${cadacontato.nome}</td>
-                        <td>${cadacontato.telefone}</td>
-                        <td>${cadacontato.cidade}</td>
-                        <td>
-                            <button onclick: "contato(${cadacontato.id})" class="btn btn-outline-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditar">
-                                Editar
-                            </button>
-                            <button onclick:"excluir(${cadacontato.id})" class="btn btn btn-outline-danger">
-                                Excluir
-                            </button>
-                        </td>
-                    </tr>`
-            });
-        })
-    }
-    function excluir(id) {
-        let resposta = confirm('Você perderar os dados do item deletado, tem certeza que quer excluir?');
-        if(resposta !== true){
-            return;
-        }
     
-        fetch(API_URL+'/lista/'+id,{
-            method: 'DELETE',
+    function buscarparaeditar(id) {      
+
+        fetch(API_URL+'/telefones/'+id)
+        .then(res=>res.json())
+        .then(dados =>{
+            input_editar_id.value = id;
+            input_editar_nome.value = dados.nome;
+            input_editar_numero.value = dados.numero;
+            input_editar_cidade.value = dados.cidade;
         });
-        atualizarLista();
-    }
-    
-    function criar(){
-        event.preventDefault();
-        let contato = {
-            nome : document.getElementById('input_nome').Value,
-            numero : document.getElementById('input_telefone').Value,
-            cidade : document.getElementById('input_cidade').Value,
-        }
-        if(contato.nome=="" && contato.telefone=="" && contato.cidade==""){
-            alert('Dados invalidos');
-            return;
-        }
-        fetch(API_URL+'/lista',{
-            method:'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body:JSON.stringify(contato)
-        })
-            .then((resposta)=>resposta.json())
-            .then((data)=> {
-                atualizarLista();
-                alert('Contato Atualizado')
-                console.log('success:',data);
-            })
-            .catch((erro)=>{
-                console.error('error:',erro);
-            });
-            formAdd.reset()
     }
 
-    function chamarcontato(id) {
-        fetch(API_URL+'/lista/'+id)
-        .then((resposta)=>{
-            return resposta.json();
-        })
-        .then((contato)=>{
-            editar_id.value = contato.id;
-            editar_nome.value = contato.nome;
-            editar_telefone.value = contato.numero;
-            editar_cidade.value = contato.cidade;
-        })
-    };
     async function editar(){
         event.preventDefault();
-        let id = editar_id.value
-        let contato = {
-            nome: editar_nome.Value,
-            numero: editar_telefone.Value,
-            cidade: editar_cidade.value,
-        }
-        await fetch(API_URL + '/lista/' +id,{
-            method: 'PATCH',
-            headers: {
-                'content-tye': 'application/json',
-            },
-            body: JSON.stringify(contato)
-        })
-        .then((resposta)=> resposta.json())
-        .then((data)=>{
-            alert('contato atualizado')
-            console.log('success',data);
-        })
-        .catch((erro)=>{
-            console.error('error:',erro);
-        });
-        atualizarLista();
-        let x = document.getElementById('fecharoffcanvas');
-        x = dispatchEvent(new Event('click'));
+            let dados = {
+                nome : input_editar_nome.value,
+                numero : input_editar_numero.value,
+                cidade : input_editar_cidade.value,
+            };
+            await fetch(API_URL +'telefones/' + input_editar_id.value,{
+                method: 'PATCH',
+                body: JSON.stringify(dados),
+                headers: {
+                    'content-type': 'application/json',
+                }
+            })
+            .then(res=>res.json())
+            .then(()=>atualizarlista());
+
+            let x = document.querySelector('[data-bs-dismiss="offcanvas"]');
+            x.dispatchEvent(new Event('click'));
     }
-atualizarLista();
+
+    function inserir(){
+        event.preventDefault();
+        let dados = {
+            nome: input_nome.value,
+            numero: parseInt(input_numero.value),
+            cidade: input_cidade.value,
+        };
+        fetch(API_URL+ '/telefones', {
+           method: 'POST',
+           body: JSON.stringify(dados),
+           headers: {
+            'content-type':'application/json'
+           } 
+        })
+        .then(resposta => resposta.json())
+        .then(resposta => atualizarlista());
+
+        form_add.reset();
+    }
+
+   async function excluir(id){
+    let resposta = confirm('Exclui não má, mas se tu quiser arrocha ai, tem certeza?')
+        if(resposta !==true){
+            return;
+        }
+        await fetch(API_URL+'/telefones/'+id,{
+            method: 'DELETE'
+        });
+        atualizarlista();
+   } 
+
+   function atualizarlista(){
+    fetch (API_URL+ '/telefones')
+    .then((resposta)=>{
+        return resposta.json();
+    })
+    .then((lista)=>{
+        tabela_telefones.innerHTML ='';
+        lista.forEach((cadaItem) => {
+        tabela_telefones.innerHTML +=`
+            <tr>
+                <td>${cadaItem.id}</td>
+                <td>${cadaItem.nome}</td>
+                <td>${cadaItem.numero}</td>
+                <td>${cadaItem.cidade}</td>
+                <td>
+                    <button onclick="buscarparaeditar(${cadaItem.id})" data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditar" class="btn btn-warning btn-sm">
+                        Editar
+                    </button> 
+                    <button onclick="excluir(${cadaItem.id})" class="btn btn-danger">
+                        Excluir
+                    </button>
+                </td>
+            </tr>`;
+        });
+    })   
+}
+atualizarlista();

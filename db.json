@@ -1,5 +1,5 @@
 {
-  "lista": [
+  "telefones": [
     {
       "id": 1,
       "nome": "pessoa1",
@@ -25,13 +25,10 @@
       "cidade": "Fortaleza"
     },
     {
-      "id": 5
-    },
-    {
+      "nome": "esquema",
+      "numero": 987878787,
+      "cidade": "berlin",
       "id": 6
-    },
-    {
-      "id": 7
     }
   ]
 }
