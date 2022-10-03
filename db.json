@@ -2,7 +2,7 @@
   "telefones": [
     {
       "id": 1,
-      "nome": "pessoa1",
+      "nome": "esquema1",
       "numero": "98888-8888",
       "cidade": "Fortaleza"
     },
@@ -29,6 +29,12 @@
       "numero": "987878787",
       "cidade": "Russa",
       "id": 6
+    },
+    {
+      "nome": "esquema 3",
+      "numero": 988887766,
+      "cidade": "icarai",
+      "id": 7
     }
   ]
 }
