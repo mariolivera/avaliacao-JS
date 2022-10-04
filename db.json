@@ -2,37 +2,37 @@
   "telefones": [
     {
       "id": 1,
-      "nome": "esquema1",
-      "numero": "98888-8888",
+      "nome": "pessoa1",
+      "numero": "(85) 98888-8888",
       "cidade": "Fortaleza"
     },
     {
       "id": 2,
       "nome": "pessoa2",
-      "numero": "97777-7777",
+      "numero": "(85) 97777-7777",
       "cidade": "Fortaleza"
     },
     {
       "id": 3,
       "nome": "pessoa3",
-      "numero": "96666-6666",
+      "numero": "(85) 96666-6666",
       "cidade": "Fortaleza"
     },
     {
       "id": 4,
       "nome": "pessoa4",
-      "numero": "95555-5555",
+      "numero": "(85) 95555-5555",
       "cidade": "Fortaleza"
     },
     {
-      "nome": "Esquema",
-      "numero": "987878787",
+      "nome": "pessoa5",
+      "numero": "(95) 98787-8787",
       "cidade": "Russa",
       "id": 6
     },
     {
-      "nome": "esquema 3",
-      "numero": 988887766,
+      "nome": "pessoa6",
+      "numero": "(88) 98888-7766",
       "cidade": "icarai",
       "id": 7
     }
