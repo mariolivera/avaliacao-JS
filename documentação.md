@@ -21,4 +21,20 @@
 ```sh
 Tela Principal
 ```
-<img src="https://github.com/mariolivera/avaliacao-JS/blob/main/imagens/Tela%20principal.png" width="500">
+<img src="https://github.com/mariolivera/avaliacao-JS/blob/main/imagens/Tela%20principal.png" width="800">
+
+```sh
+Tela de criar contato
+```
+<img src="https://github.com/mariolivera/avaliacao-JS/blob/main/imagens/CriarContato.png" width="800">
+
+```sh
+Tela de Atualizar Contato
+``` 
+<img src="https://github.com/mariolivera/avaliacao-JS/blob/main/imagens/Atualizar.png" width="800">
+
+```sh
+Tela de excluir Contato
+``` 
+<img src="https://github.com/mariolivera/avaliacao-JS/blob/main/imagens/Excluir.png" width="800">
+
