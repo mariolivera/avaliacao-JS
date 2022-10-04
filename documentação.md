@@ -21,4 +21,4 @@
 ```sh
 Tela Principal
 ```
-<img src="(imagens/Tela%20principal.png)">
+<img src="![](imagens/Tela%20principal.png)" width="500">
